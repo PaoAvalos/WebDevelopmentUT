@@ -1,6 +1,7 @@
 * {
-    font-family: sans-serif;
-    box-sizing: border-box;
+    font-family: monospace;
+    font-weight: normal;
+    font-size: 110%;
 }
 ul {
     margin: 0;
@@ -14,7 +15,7 @@ a {
 section {
     padding: 10px 15px;
     margin: 10px;
-    display: ruby;
+    display: flex;
 }
 .header {
     padding-top: .5em;
@@ -35,7 +36,7 @@ section {
     text-align: center;
     display: block;
     color: black;
-    font-size: .99em;
+    font-size: 100%;
 }
 
 .nav a:hover {
@@ -69,13 +70,13 @@ section {
 }
 
 .flex {
-    margin: 20px auto;
     width: 60%;
-    height: 400px;
-    border: hidden;
-    background-color: lightgray;
-    grid-template-columns: auto;
-
+    padding: 20px;
+    margin: 20%;
+    background-color: rgb(210, 210, 210);
+    border-radius: 20px;
+    text-align: left;
+    font-size: 200%;
 }
 .flex {
     display: flex;
@@ -86,13 +87,7 @@ section {
     flex: 1;
 }
 
-.flex p {
-    background-color: lightgray;
-    color: black;
-    padding: 20px;
-    font-weight: bold;
-    text-align: center;
-}
+
 
 @media (max-width: 500px){
     .flex{
@@ -114,8 +109,13 @@ textarea{
     width:60%;
     height: 200%;
 }
-button{
-    background-color: darkblue;
+button {
+    background-color: #00008B;
     color: white;
+    font-family: monospace;
+    font-size: 100%;
+    padding: 10px 15px 10px 15px;
+    margin: 13px;
+    border: none;
+    cursor: pointer;
 }
-
