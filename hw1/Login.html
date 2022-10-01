@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    h1 {
+      font-family: monospace;
+      font-weight: normal;
+      padding: 20px;
+      background-color: rgb(180, 180, 180);
+      border-radius: 20px;
+      font-size: 300%;
+    }
+    img {float: right}
+    .login {
+      font-family: monospace;
+      padding: 20px;
+      margin: 20px 530px;
+      background-color: rgb(210, 210, 210);
+      border-radius: 20px;
+      text-align: center;
+      font-size: 200%;
+
+    }
+    #line1{font-weight: bold}
+    #line2 {color: #00BFFF}
+    input {
+      font-family: monospace;
+      font-size: 100%;
+      color: rgb(210, 210, 210);
+      padding: 10px 0px 10px 10px;
+      margin: 10px;
+      border: none;
+      box-sizing: border-box;
+      width: 50%;
+    }
+    button {
+      background-color: #00008B;
+      color: white;
+      font-family: monospace;
+      font-size: 100%;
+      padding: 10px 15px 10px 15px;
+      margin: 13px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+  <title>Login</title>
+</head>
+<body>
+<h1><img class="img" src="res/images/me.png" alt="icon" width="40" height="40">Home</h1>
+<div class="login">
+  <p id="line1">Welcome to PostIt</p>
+  <p id="line2">Create an account</p>
+  <p>or <br> Please log in</p>
+  <form action="/action_page.php">
+    <input type="email" placeholder="Email" name="email" required><br>
+    <input type="password" placeholder="Password" name="psw" required><br>
+    <button type="submit">Log in</button>
+  </form>
+  <p id="line2">Forget password</p>
+</div>
+
+</body>
+</html>
