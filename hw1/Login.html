@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     h1 {
       font-family: monospace;
@@ -10,12 +11,13 @@
       background-color: rgb(180, 180, 180);
       border-radius: 20px;
       font-size: 300%;
+      color: black;
     }
     img {float: right}
     .login {
       font-family: monospace;
       padding: 20px;
-      margin: 20px 530px;
+      margin: 2% 36%;
       background-color: rgb(210, 210, 210);
       border-radius: 20px;
       text-align: center;
@@ -24,16 +26,17 @@
     }
     #line1{font-weight: bold}
     #line2 {color: #00BFFF}
+    #line3 {color: #00BFFF}
     input {
       font-family: monospace;
       font-size: 100%;
-      color: rgb(210, 210, 210);
       padding: 10px 0px 10px 10px;
       margin: 10px;
       border: none;
       box-sizing: border-box;
       width: 50%;
     }
+    input::placeholder {color: rgb(210, 210, 210)}
     button {
       background-color: #00008B;
       color: white;
@@ -44,22 +47,28 @@
       border: none;
       cursor: pointer;
     }
+    button:hover {background-color: black}
+    @media (max-width: 1000px) {
+      .login {
+        flex-direction: column;
+        margin: 0px;
+      }
+    }
   </style>
   <title>Login</title>
 </head>
 <body>
-<h1><img class="img" src="res/images/me.png" alt="icon" width="40" height="40">Home</h1>
+<h1><img class="img" src="../res/images/me.png" alt="icon" width="40" height="40">Home</h1>
 <div class="login">
   <p id="line1">Welcome to PostIt</p>
   <p id="line2">Create an account</p>
   <p>or <br> Please log in</p>
-  <form action="/action_page.php">
+  <form id="pass-form" onsubmit="window.location.href = 'Index(homepage).html'; return false;">
     <input type="email" placeholder="Email" name="email" required><br>
     <input type="password" placeholder="Password" name="psw" required><br>
     <button type="submit">Log in</button>
   </form>
-  <p id="line2">Forget password</p>
+  <p id="line3">Forget password</p>
 </div>
-
 </body>
 </html>
