@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    h1 {
+      width: 100%;
+      font-family: monospace;
+      font-weight: normal;
+      padding: 20px;
+      background-color: rgb(180, 180, 180);
+      border-radius: 20px;
+      font-size: 300%;
+      color: black;
+    }
+    img {float: right}
+    a:link {
+      color: black;
+      background-color: transparent;
+      text-decoration: none;
+    }
+    a:visited {
+      color: black;
+      background-color: transparent;
+      text-decoration: none;
+    }
+    a:hover {
+      color: black;
+      background-color: grey;
+      text-decoration: none;
+    }
+    .container{
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-around;
+    }
+    .main {
+      display: inline-block;
+      width: 60%;
+    }
+    .post{
+      font-family: monospace;
+      font-weight: normal;
+      font-size: 200%;
+      text-align: right;
+      color: black;
+      padding: 20px;
+      margin-top: 10px;
+      background-color: rgb(210, 210, 210);
+      border-radius: 20px;
+      object-fit: contain;
+    }
+    .main img{float: left}
+    .img1 {
+      margin-top: 10px;
+      width: 100%;
+      object-fit: contain;
+      background-color: rgb(210, 210, 210);
+    }
+    .post p{
+      display: block;
+      margin-top: 30px;
+      text-align: left;
+    }
+    .sidebar {
+      display: inline-block;
+      position: absolute;
+      width: 15%;
+      min-height: 100%;
+      background-color: rgb(180, 180, 180);
+      border-radius: 20px;
+    }
+    .footer {
+      font-family: monospace;
+      text-align: center;
+      font-size: 150%;
+      padding: 5px;
+      margin-top: 20px;
+      width: 100%;
+      background-color: rgb(180, 180, 180);
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+<h1><img class="img" src="../res/images/me.png" alt="icon" width="40" height="40">Home|<a href="addPost.html">addPost</a></h1>
+<div class="container">
+  <div class="sidebar" style="left: 10px"></div>
+  <div class="main">
+    <div class="post">
+      <img class="img" src="../res/images/me.png" alt="icon" width="40" height="40">Oct 22, 2022
+      <img class="img1" src="../res/images/img.jpg" alt="img" width="400" height="400">
+      <p>Northern Lights</p>
+      <img class="img" src="../res/images/like.svg" alt="img" width="60" height="40"><br>
+    </div>
+    <div class="post">
+      <img class="img" src="../res/images/me.png" alt="icon" width="40" height="40">Oct 02, 2022
+      <p>Some text</p>
+      <img class="img" src="../res/images/like.svg" alt="img" width="60" height="40"><br>
+    </div>
+  </div>
+  <div class="sidebar" style="right: 10px"></div>
+</div>
+<div class="footer">
+  <h2>Footer</h2>
+</div>
+</body>
+</html>
