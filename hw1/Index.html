@@ -7,9 +7,7 @@
     div >p {
       box-sizing: border-box;
     }
-    div+ p{
-      background-color: red;
-    }
+
 
     p::first-letter {
       text-transform: uppercase;
@@ -93,6 +91,17 @@
       background-color: rgb(180, 180, 180);
       border-radius: 20px;
     }
+
+    div + p {
+      font-family: monospace;
+      text-align: center;
+      font-size: 150%;
+      padding: 5px;
+      margin-top: 20px;
+      width: 100%;
+      background-color: rgb(180, 180, 180);
+      border-radius: 20px;
+    }
   </style>
 
 </head>
@@ -104,17 +113,20 @@
 <div class="container">
   <div class="sidebar" style="left: 10px"></div>
   <div class="main">
+
     <div class="post">
       <img class="img" src="../res/images/me.png" alt="icon" width="40" height="40">Oct 22, 2022
       <img class="img1" src="../res/images/img.jpg" alt="img" width="400" height="400">
       <p>northern Lights</p>
       <img class="img" src="../res/images/like.svg" alt="img" width="60" height="40"><br>
     </div>
+
     <div class="post">
       <img class="img" src="../res/images/me.png" alt="icon" width="40" height="40">Oct 02, 2022
       <p>Some text we posted</p>
       <img class="img" src="../res/images/like.svg" alt="img" width="60" height="40"><br>
     </div>
+
     <div class="post">
       <img class="img" src="../res/images/me.png" alt="icon" width="40" height="40">Oct 22, 2022
       <img class="img1" src="../res/images/imageposthome.jpg" alt="img" width="400" height="400">
@@ -139,11 +151,6 @@
   </div>
   <div class="sidebar" style="right: 10px"></div>
 </div>
-
-
-<div class="footer">
-  <h2>Footer</h2>
-</div>
-
+  <p>Footer</p>
 </body>
 </html>
