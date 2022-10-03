@@ -101,6 +101,13 @@
       width: 100%;
       background-color: rgb(180, 180, 180);
       border-radius: 20px;
+      flex-direction: column-reverse;
+    }
+    @media (max-width: 1000px) {
+      .container {
+        flex-direction: column-reverse;
+        margin: 20px;
+      }
     }
   </style>
 
@@ -151,6 +158,8 @@
   </div>
   <div class="sidebar" style="right: 10px"></div>
 </div>
+
+
   <p>Footer</p>
 </body>
 </html>
