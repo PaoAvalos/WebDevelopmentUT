@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    * {
+    div >p {
       box-sizing: border-box;
+    }
+    div+ p{
+      background-color: red;
     }
     h1 {
       width: 100%;
@@ -85,9 +89,13 @@
       border-radius: 20px;
     }
   </style>
+
 </head>
+
+
 <body>
-<h1><img class="img" src="../res/images/me.png" alt="icon" width="40" height="40">Home|<a href="addPost.html">addPost</a></h1>
+<h1><img class="img" src="../res/images/me.png" alt="icon" width="40" height="40"><a href="Index.html">Home</a>|<a href="addPost.html">addPost</a></h1>
+
 <div class="container">
   <div class="sidebar" style="left: 10px"></div>
   <div class="main">
@@ -126,8 +134,11 @@
   </div>
   <div class="sidebar" style="right: 10px"></div>
 </div>
+
+
 <div class="footer">
   <h2>Footer</h2>
 </div>
+
 </body>
 </html>
