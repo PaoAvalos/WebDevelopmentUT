@@ -1,2 +1,2 @@
 # WebDevelopmentUT
-repo for Web Development course 
+Repository for Web Development course UT 
