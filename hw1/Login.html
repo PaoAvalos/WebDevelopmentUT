@@ -15,11 +15,14 @@
   <p id="line2">Create an account</p>
   <p>or <br> Please log in</p>
   <form id="pass-form" onsubmit="window.location.href = 'Index.html'; return false;">
-    <input type="email" placeholder="Email" name="email" required><br>
+<!--  <form action="/action_page.php" target="_blank">-->
+    <input id="emailInput" type="email" placeholder="Email" name="email" required><br>
     <input type="password" placeholder="Password" name="psw" required><br>
-    <button type="submit">Log in</button>
+    <button type="submit" onclick="saveEmail()">Log in</button>
+<!--    <button type="submit">Log in</button>-->
   </form>
   <p id="line3">Forget password</p>
 </div>
+<script type="text/javascript" src="../js/profileInfo.js"></script>
 </body>
 </html>

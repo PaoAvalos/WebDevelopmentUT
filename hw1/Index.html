@@ -7,8 +7,18 @@
 </head>
 <body>
 <header>
-  <h1><img class="img" src="../res/images/me.png" alt="icon" width="40" height="40"><a href="Index.html">Home</a>|<a href="addPost.html">addPost</a></h1>
+  <h1>
+    <img id="profilePicture" onmouseover="showInfo()" onmouseout="showInfo()" class="img" src="../res/images/me.png" alt="icon" width="40" height="40">
+    <a href="Index.html">Home</a>|<a href="addPost.html">addPost</a>
+  </h1>
 </header>
+
+<div id="personInfo">
+  <p>name</p>
+  <p>email</p>
+  <a href="Login.html">Logout</a>
+</div>
+
 <div class="container">
   <div class="sidebar" style="left: 10px"></div>
   <div class="main">
@@ -54,6 +64,6 @@
 <footer>
   <p>Footer</p>
 </footer>
-
+<script type="text/javascript" src="../js/profileInfo.js"></script>
 </body>
 </html>
