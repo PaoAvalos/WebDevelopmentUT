@@ -1,129 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    div >p {
-      box-sizing: border-box;
-    }
-
-
-    p::first-letter {
-      text-transform: uppercase;
-    }
-    header {
-      width: 100%;
-    }
-    h1 {
-      font-family: monospace;
-      font-weight: normal;
-      margin: 30px;
-      padding: 20px;
-      background-color: rgb(180, 180, 180);
-      border-radius: 20px;
-      font-size: 300%;
-      color: black;
-    }
-    img {float: right}
-    a:link {
-      color: black;
-      background-color: transparent;
-      text-decoration: none;
-    }
-    a:visited {
-      color: black;
-      background-color: transparent;
-      text-decoration: none;
-    }
-    a:hover {
-      color: black;
-      background-color: grey;
-      text-decoration: none;
-    }
-    .container{
-      width: 100%;
-      display: flex;
-      align-items: stretch;
-      justify-content: space-around;
-    }
-    .main {
-      display: inline-block;
-      width: 70%;
-      margin: 20px;
-    }
-    .post{
-      font-family: monospace;
-      font-weight: normal;
-      font-size: 200%;
-      text-align: right;
-      color: black;
-      padding: 20px;
-      margin-top: 10px;
-      background-color: rgb(210, 210, 210);
-      border-radius: 20px;
-      object-fit: contain;
-    }
-    .main img{float: left}
-    .img1 {
-      margin-top: 10px;
-      width: 100%;
-      object-fit: contain;
-      background-color: rgb(210, 210, 210);
-    }
-    .post p{
-      display: block;
-      margin-top: 30px;
-      text-align: left;
-    }
-    .sidebar {
-      display: inline-block;
-      position: relative;
-      margin: 20px;
-      width: 15%;
-      min-height: 100%;
-      background-color: rgb(180, 180, 180);
-      border-radius: 20px;
-    }
-    footer {
-      width: 100%;
-      font-family: monospace;
-      text-align: center;
-      font-size: 150%;
-      padding: 5px;
-      background-color: rgb(180, 180, 180);
-      border-radius: 20px;
-    }
-
-    div + p {
-      font-family: monospace;
-      text-align: center;
-      font-size: 150%;
-      padding: 5px;
-      margin-top: 20px;
-      width: 100%;
-      background-color: rgb(180, 180, 180);
-      border-radius: 20px;
-      flex-direction: column-reverse;
-    }
-    @media (max-width: 1000px) {
-      header {font-size: 50%;}
-      h1{margin-bottom: 0px}
-      .main{width: 100%;margin: 0px 0px 0px 30px;}
-      .post {font-size: 150%; margin-right: 60px}
-      .img {width:30px; height:30px}
-      .container {
-        flex-direction: column;
-        width: 100%;
-        font-size: 100%;
-      }
-      footer{width: 80%; margin-left: 30px}
-    }
-  </style>
-
+  <link href="../res/css/styleIndex.css" rel="stylesheet">
+  <title>Home Page</title>
 </head>
-
-
 <body>
 <header>
   <h1><img class="img" src="../res/images/me.png" alt="icon" width="40" height="40"><a href="Index.html">Home</a>|<a href="addPost.html">addPost</a></h1>
@@ -173,5 +54,6 @@
 <footer>
   <p>Footer</p>
 </footer>
+
 </body>
 </html>
