@@ -1,0 +1,56 @@
+[
+  {
+    "name": "John",
+    "time": 1300,
+    "text": "hey, im john and im posting",
+    "img": null
+  },
+  {
+    "name": "Maria",
+    "time": 1100,
+    "text": "hi all,look at this",
+    "img": "res/images/img.jpg"
+  },
+  {
+    "name": "Rich",
+    "time": 2300,
+    "text": "lol",
+    "img": null
+  },
+  {
+    "name": "Paula",
+    "time": 2100,
+    "text": "lol",
+    "img": true
+  },
+  {
+  "name": "Robert",
+  "time": 1000,
+  "text": "lol",
+  "img": "res/image/mountain.jpg"
+  },
+  {
+    "name": "Jessica",
+    "time": 1600,
+    "text": "wazzzup",
+    "img": null
+  },
+  {
+    "name": "JuanPablo",
+    "time": 1940,
+    "text": "hello, winter",
+    "img": null
+  },
+  {
+    "name": "Ericka",
+    "time": 1250,
+    "text": "hello!",
+    "img": null
+  },
+  {
+    "name": "Hendrik",
+    "time": 1140,
+    "text": "doing some web development",
+    "img": null
+  }
+]
