@@ -1,4 +1,4 @@
-    fetch("https://api.npoint.io/b2649a9dc1217bcf7e93").then((data)=>{
+   fetch("https://api.npoint.io/b2649a9dc1217bcf7e93").then((data)=>{
         //console.log(data);
         return data.json();
 

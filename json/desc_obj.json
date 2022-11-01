@@ -1,56 +1,55 @@
-[
-  {
-    "name": "John",
-    "time": 1300,
-    "text": "hey, im john and im posting",
-    "img": null
-  },
+[{
+  "name": "John",
+  "time": "13:00",
+  "text": "hey, im john and im posting",
+  "image": "res/images/img.jpg"
+},
   {
     "name": "Maria",
-    "time": 1100,
+    "time": "11:00",
     "text": "hi all,look at this",
-    "img": "res/images/img.jpg"
+    "image": "res/images/img.jpg"
   },
   {
     "name": "Rich",
-    "time": 2300,
+    "time": "23:00",
     "text": "lol",
-    "img": null
+    "image": null
   },
   {
     "name": "Paula",
-    "time": 2100,
+    "time": "21:00",
     "text": "lol",
-    "img": true
+    "image": true
   },
   {
-  "name": "Robert",
-  "time": 1000,
-  "text": "lol",
-  "img": "res/image/mountain.jpg"
+    "name": "Robert",
+    "time": "10:00",
+    "text": "lol",
+    "image": "res/image/mountain.jpg"
   },
   {
     "name": "Jessica",
-    "time": 1600,
+    "time": "16:00",
     "text": "wazzzup",
-    "img": null
+    "image": null
   },
   {
     "name": "JuanPablo",
-    "time": 1940,
+    "time": "19:40",
     "text": "hello, winter",
-    "img": null
+    "image": null
   },
   {
     "name": "Ericka",
-    "time": 1250,
+    "time": "12:50",
     "text": "hello!",
-    "img": null
+    "image": null
   },
   {
     "name": "Hendrik",
-    "time": 1140,
+    "time": "11:40",
     "text": "doing some web development",
-    "img": "res/images/stressedstudent.jpg"
+    "image": "res/images/stressedstudent.jpg"
   }
 ]

@@ -19,6 +19,13 @@ h1 {
     font-size: 300%;
     color: black;
 }
+time{
+    margin-left: 80%
+}
+name{
+    font-size:80%;
+    margin-left: 80%
+}
 img {float: right}
 a:link {
     color: black;
