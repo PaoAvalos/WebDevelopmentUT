@@ -50,6 +50,10 @@
     "name": "Hendrik",
     "time": "11:40",
     "text": "doing some web development",
+<<<<<<< HEAD
     "image": "res/images/stressedstudent.jpg"
+=======
+    "img": null
+>>>>>>> parent of 6437756... made js fetch file but something is wrong with id
   }
 ]
