@@ -1,8 +1,10 @@
 function readJSON() {
-    fetch("https://api.npoint.io/b2649a9dc1217bcf7e93")
+    //fetch("https://api.npoint.io/b2649a9dc1217bcf7e93")
+    fetch('../json/objects.json')
         .then((response) => {
             return response.json();
         })
+
         .then((json) => {
             let posts = json;
             posts.map(function (onePost) {

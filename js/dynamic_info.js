@@ -13,7 +13,7 @@
     </div>-->`
 
         });
-        document.getElementById("main").innerHTML=data1;
+        document.getElementById("posts").innerHTML=data1;
     }).catch((err)=>{
         console.log(err);
 
