@@ -22,13 +22,7 @@ window.onload = function () {
                 document.body.appendChild(div)
             }
         }).catch(err => {
-        let errDiv = document.createElement("div");
-        errDiv.className = 'post';
-        errDiv.innerText = err;
-        document.body.appendChild(errDiv);
+
     }).finally(() => {
-        let footer = document.createElement("footer");
-        footer.innerText = "Footer"
-        document.body.appendChild(footer);
     })
 }
