@@ -1,6 +1,6 @@
 function readJSON() {
-    //fetch("https://api.npoint.io/b2649a9dc1217bcf7e93")
-    fetch('../json/objects.json')
+    fetch("https://api.npoint.io/b2649a9dc1217bcf7e93")
+    //fetch('../json/objects.json')
         .then((response) => {
             return response.json();
         })
