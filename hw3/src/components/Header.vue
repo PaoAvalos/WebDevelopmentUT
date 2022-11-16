@@ -1,7 +1,7 @@
 <template>
     <header>
         <h1>
-            <a href="index.html">Home</a>|<a href="login.html">LogIn</a>
+            <a href="index.html">Home</a>|<a href="signup.html">SignUp</a>
         </h1>
     </header>
 </template>
