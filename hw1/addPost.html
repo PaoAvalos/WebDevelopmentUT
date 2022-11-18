@@ -1,46 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../res/css/styleAddPost.css" rel="stylesheet">
     <title>addPost</title>
 </head>
 <body>
 <header class="header">
-    <ul class="nav">
-        <li><a href="Index.html">Home</a></li>
-    </ul>
-
-    <a class="logo" href="#"><img alt="My picture" height="40" src="../res/images/me.png" width="40"></a>
+    <h1>
+        <img id="profilePicture" onclick="showInfo()" class="img" src="../res/images/me.png" alt="icon" width="40" height="40">
+        <a href="Index.html">Home</a>
+    </h1>
 </header>
+
+<div id="personInfo">
+    <p>name</p>
+    <p>email</p>
+    <a href="Login.html">Logout</a>
+</div>
+
 <div class = "container">
-
-<div class = "flex">
-    <p>
-    <form action="#0">
-        <label for="text"></label>
-        <div class="grow-wrap">
-            <text>Post <br>body</text>
-            <textarea id="text" name="text" onInput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+    <form id="pass-form" onsubmit="window.location.href = 'Index.html'; return false;">
+        <div class="post">
+            <label for="text">Post</label>
+            <textarea id="text" rows="10" cols="50"></textarea><br>
+            <label for="text">body</label>
         </div>
-    </form></p>
-    <p>
-    <form action="/action_page.php">
-    <text>Select </text>
-    <br>
-    <text>file</text>
-        <input id="myFile" name="filename" type="file">
-    </p>
-</form>
-    <form id="pass-form" onclick="window.location.href = 'Index.html'; return false;">
-        <p>
-        <button type="button" >Create post</button>
-    </p>
-</form>
-
+        <div class="select">
+            <label for="file">Select</label>
+            <input type="file" id="file" name="file" style="display: none;" />
+            <input type="button" value="Choose file" onclick="document.getElementById('file').click();" /><br>
+            <label for="file">file</label>
+        </div>
+        <div>
+            <button type="submit">Create post</button>
+        </div>
+    </form>
 </div>
-
-</div>
-
+<script type="text/javascript" src="../js/profileInfo.js"></script>
 </body>
 </html>
