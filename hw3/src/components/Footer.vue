@@ -21,4 +21,5 @@ export default {
     font-size: 150%;
     color: black;
 }
+
 </style>
