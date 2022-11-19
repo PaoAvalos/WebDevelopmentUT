@@ -20,6 +20,6 @@ export default {
     border-radius: 20px;
     font-size: 150%;
     color: black;
+    text-align: center;
 }
-
 </style>

@@ -13,7 +13,6 @@ export default {
 </script>
 
 <style scoped>
-
 header {
     width: 100%;
 }
@@ -26,6 +25,7 @@ h1 {
     border-radius: 20px;
     font-size: 300%;
     color: black;
+    text-align: center;
 }
 a:link {
     color: black;
