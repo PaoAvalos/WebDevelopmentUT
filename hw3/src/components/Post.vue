@@ -1,39 +1,36 @@
 <template>
     <div class="container">
         <div class="sidebar" style="left: 10px"></div>
-        <div id="posts" class="main"></div>
+        <div id="posts" class="main">{{readJSON}}</div>
         <div class="sidebar" style="right: 10px"></div>
     </div>   
 </template>
 
 <script>
-import image from "../assets/me.png"
 export default {
   name: "Post",
-  me: image,
-  methods: {
+  computed: {
     readJSON() {
       fetch("https://api.npoint.io/b2649a9dc1217bcf7e93")
           .then((response) => {
             return response.json();
           })
           .then((json) => {
-            let posts = json;
-            posts.map(function (onePost) {
+            json.map(function (onePost) {
               let post = document.createElement('div');
               post.setAttribute('class', 'post');
               if(onePost.hasOwnProperty('img')) {
                 post.innerHTML = `
-                        <img class="img" :src="me" alt="pfp" width="40" height="40">${onePost.Ptime}
+                        <img class="img" src="https://i.pinimg.com/236x/d4/a7/ae/d4a7ae925191062983533b1e171bebcd.jpg" alt="pfp" width="60" height="60">${onePost.Ptime}
                         <img class="picture" src=${onePost.img} alt="picture" width="400" height="400">
                         <p>${onePost.name}: ${onePost.texto}</p>
-                        <img class="img" :src="assets/like.svg" alt="like" width="60" height="40"><br>
+                        <img class="img" src="https://toppng.com/uploads/preview/facebook-like-butto-1156301672887cxlbmue9.png" alt="like" width="40" height="40"><br>
                     `;
               } else {
                 post.innerHTML = `
-                        <img class="img" src="assets/me.png" alt="pfp" width="40" height="40">${onePost.Ptime}
+                        <img class="img" src="https://i.pinimg.com/236x/d4/a7/ae/d4a7ae925191062983533b1e171bebcd.jpg" alt="pfp" width="40" height="40">${onePost.Ptime}
                         <p>${onePost.name}: ${onePost.texto}</p>
-                        <img class="img" src="assets/like.svg" alt="like" width="60" height="40"><br>
+                        <img class="img" src="https://toppng.com/uploads/preview/facebook-like-butto-1156301672887cxlbmue9.png" alt="like" width="40" height="40"><br>
                     `;
               }
               document.getElementById('posts').appendChild(post);
@@ -42,9 +39,6 @@ export default {
           })
     }
   },
-  mounted() {
-    this.readJSON()
-  }
 }
 </script>
 
@@ -73,7 +67,8 @@ time {
   background-color: rgb(210, 210, 210);
   border-radius: 20px;
 }
-.img{float: left}
+.img{float: left;
+  mix-blend-mode: multiply;}
 .picture {
   margin-top: 10px;
   width: 100%;
