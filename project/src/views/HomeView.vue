@@ -2,7 +2,7 @@
   <div class="container">
     <div class="sidebar" style="left: 10px"></div>
     <div class="main" id="posts">
-      <Post v-for="data in json">
+      <Post v-for="data in $store.state.json">
         <img class="img" src='../assets/pfp.png' alt="pfp" width="60" height="60">{{data.time}}
         <div v-if="data.hasOwnProperty('img')">
           <img class="picture" :src=data.img alt="picture" width="400" height="400">
@@ -15,31 +15,17 @@
     </div>
     <div class="sidebar" style="right: 10px"></div>
   </div>
-  <button v-on:click="resetLikes">Reset Likes</button>
+  <button v-on:click="$store.commit('resetLikes')">Reset Likes</button>
 </template>
 
 <script>
 import Post from '@/components/Post.vue'
-import json from '@/assets/objects.json'
 
 export default {
   name: 'HomeView',
   components: {
     Post,
   },
-  data(){
-    return{
-      json: json,
-      counter: 0,
-    }
-  },
-  methods:{
-    resetLikes(){
-      this.json.map(function (onePost) {
-        onePost.counter = 0
-      })
-    }
-  }
 }
 </script>
 
