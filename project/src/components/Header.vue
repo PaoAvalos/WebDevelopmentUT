@@ -23,27 +23,28 @@ export default {
     font-weight: normal;
     margin: 30px 30px 0px 30px;
     padding: 20px;
-    background-color: darkcyan;
+    background-color: #395B64;
     border-radius: 20px;
     font-size: 300%;
-    color: black;
+    color: #E7F6F2;
     text-align: center;
   }
   nav a:link {
-    color: black;
+    color: #E7F6F2;
     background-color: transparent;
     text-decoration: none;
   }
   nav a:visited {
-    color: black;
+    color: #E7F6F2;
     background-color: transparent;
     text-decoration: none;
   }
   nav a:hover {
-    color: black;
-    background-color: crimson;
+    color: #395B64;
+    background-color: #A5C9CA;
     text-decoration: none;
     shape-margin: inherit;
-    outline-style: solid;
+    border-style: solid;
+    border-color: #2C3333;
   }
 </style>

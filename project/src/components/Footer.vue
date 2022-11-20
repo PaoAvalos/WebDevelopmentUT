@@ -16,7 +16,7 @@
     font-weight: normal;
     margin: 10px 30px 0px 30px;
     padding: 20px;
-    background-color: darkcyan;
+    background-color: #2C3333;
     border-radius: 20px;
     font-size: 150%;
     color: black;
