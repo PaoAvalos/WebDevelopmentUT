@@ -1,6 +1,6 @@
 <template>
   <footer>
-    Contact us - ©PHI - Privacy Policy
+    some info
   </footer>
 </template>
 
@@ -16,10 +16,11 @@
     font-weight: normal;
     margin: 10px 30px 0px 30px;
     padding: 20px;
-    background-color: #2C3333;
+    background-image: url("../assets/snow.jpeg");
+    background-size: 100% 100%;
     border-radius: 20px;
     font-size: 150%;
-    color: black;
+    color: white;
     text-align: center;
   }
 </style>

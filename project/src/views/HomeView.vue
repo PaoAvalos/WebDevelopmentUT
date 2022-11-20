@@ -3,7 +3,7 @@
     <div class="sidebar" style="left: 10px"></div>
     <div class="main" id="posts">
       <Post v-for="data in json">
-        <img class="img" src='../assets/me.png' alt="pfp" width="60" height="60">{{data.time}}
+        <img class="img" src='../assets/pfp.png' alt="pfp" width="60" height="60">{{data.time}}
         <div v-if="data.hasOwnProperty('img')">
           <img class="picture" :src=data.img alt="picture" width="400" height="400">
         </div>
@@ -45,7 +45,7 @@ export default {
 
 <style>
 body{
-  background-image: url("../assets/space.jpeg");
+  background-color: black;
 }
 .container{
   width: 100%;
@@ -64,9 +64,9 @@ body{
   margin: 20px;
   width: 15%;
   min-height: 100%;
-  background-color: #395B64;
+  background-color: rgb(57,91,100, 50%);
   border-radius: 20px;
-  opacity: 0.5;
+  background-image: url("../assets/giphy.gif");
 }
 button{
   font-family: monospace;

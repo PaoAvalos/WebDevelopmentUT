@@ -19,11 +19,12 @@ export default {
     width: 100%;
   }
   nav {
+    background-image: url("../assets/giphy.gif");
     font-family: monospace;
     font-weight: normal;
     margin: 30px 30px 0px 30px;
     padding: 20px;
-    background-color: #395B64;
+    background-color: rgb(57,91,100, 50%);
     border-radius: 20px;
     font-size: 300%;
     color: #E7F6F2;
@@ -40,11 +41,11 @@ export default {
     text-decoration: none;
   }
   nav a:hover {
-    color: #395B64;
+    color: black;
     background-color: #A5C9CA;
     text-decoration: none;
     shape-margin: inherit;
     border-style: solid;
-    border-color: #2C3333;
+    border-color: black;
   }
 </style>
