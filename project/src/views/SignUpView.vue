@@ -1,48 +1,113 @@
 <template>
- <div id="SignupApp">
+	<div id="SignupApp">
 
-<div class="input_container">
-  <ul>
-    <li v-bind:class="{ is_valid: contains_amount_characters }">From 8 to 15 characters</li>
-    <li v-bind:class="{ is_valid: contains_number }">Contains a number</li>
-    <li v-bind:class="{ is_valid: contains_uppercase }">Starts with an uppercase</li>
-    <li v-bind:class="{ is_valid: contains_underscore }">Contains character "_"</li>
-  </ul>
+		<div class="input_container">
+      <div class="sidebar" style="left: 20px"></div>
+           <div class="main">
 
-  <div class="checkmark_container" v-bind:class="{ show_checkmark: valid_password }">		
-    <svg width="50%" height="50%" viewBox="0 0 140 100">
-      <path class="checkmark" v-bind:class="{ checked: valid_password }" d="M10,50 l25,40 l95,-70" />
-    </svg>
-  </div>
-  
-  <input type="password" placeholder="Email" />
+            <div class="signup_container">
 
-  <input type="password" @input="checkPassword" v-model="password" autocomplete="off" placeholder="Password" />
-<button>Signup</button>
 
-    
+		<ul>
+			<li v-bind:class="{ is_valid: contains_amount_characters }">From 8 to 15 characters</li>
+			<li v-bind:class="{ is_valid: contains_number }">Contains a number</li>
+			<li v-bind:class="{ is_valid: contains_uppercase }">Starts with an uppercase</li>
+			<li v-bind:class="{ is_valid: contains_underscore }">Contains character "_"</li>
+		</ul>
 
-</div>		
-</div>
+		<div class="checkmark_container" v-bind:class="{ show_checkmark: valid_password }">
+			<svg width="50%" height="50%" viewBox="0 0 140 100">
+			<path class="checkmark" v-bind:class="{ checked: valid_password }" d="M10,50 l25,40 l95,-70" />
+			</svg>
+    </div>
+
+
+		<input type="text" placeholder="Email" required/>
+		<input type="password" @input="checkPassword" v-model="password" placeholder="Password" />
+    <button @click="goToHome()">Signup</button>
+
+            </div>
+
+           </div>
+
+    <div class="sidebar" style="left: 20px"></div>
+
+
+		</div>
+	</div>
 
 </template>
 
 <script>
 export default {
-  name: 'SignUpView',
-}
+
+  data(){
+    return {
+		      password: '' ,
+          contains_amount_characters: false,
+          contains_number:false,
+          contains_uppercase:false,
+          contains_underscore:false,
+          valid_password:false
+
+
+		    }
+	},
+
+
+	methods: {
+    goToHome(){
+       this.$router.push('/');
+    },
+
+		checkPassword() {
+			this.password_length = this.password.length;
+			const format = /[_]/;
+
+			if (this.password_length > 8 ) {
+				this.contains_amount_characters = true;
+			} else {
+				this.contains_amount_characters = false;
+			}
+
+			this.contains_number = /\d/.test(this.password);
+			this.contains_uppercase = /[A-Z]/.test(this.password);
+			this.contains_underscore = format.test(this.password);
+
+			if (
+				this.contains_amount_characters === true &&
+				this.contains_underscore === true &&
+				this.contains_uppercase === true &&
+				this.contains_number === true
+			) {
+				this.valid_password = true;
+			} else {
+				this.valid_password = false;
+			}
+		},
+	},
+};
 </script>
 
-<style>
+<style scoped>
 
+body{
+  background-color: black;
+}
+main {
+  display: inline-block;
+  width: 70%;
+  margin: 20px;
+}
+signup_container{
 
-#app { width: 400px; }
-#button { width: 200px; }
+         position: relative;
+         padding: 30px;
+         box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}        border-radius: 6px;
+         background: #FFF;
 
-
-/* Password Input --------- */
-
-.input_container {
+/* .input_container {
 	position: relative;
 	padding: 30px;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -50,7 +115,28 @@ export default {
 	background: #FFF;
 }
 
-input[type="password"] {
+  */ 
+
+
+sidebar {
+  display: inline-block;
+  position: relative;
+  margin: 20px;
+  width: 15%;
+  min-height: 100%;
+  background-color: rgb(57,91,100, 50%);
+  border-radius: 20px;
+  background-image: url("../assets/giphy.gif");
+}
+
+.input_container{
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+}
+
+input[type="password"],[type="text"] {
 	line-height: 1.5;
 	display: block;
 	color: rgba(136, 152, 170, 1);
@@ -88,6 +174,28 @@ input[type="password"]:focus {
 	align-items: center;
 	transition: opacity .4s ease;
 }
+
+
+button {
+
+font-family: monospace;
+font-size: 200%;
+padding: 10px;
+border-radius: 20px;
+cursor: pointer;
+
+ }
+
+
+button:hover {
+  color: #E7F6F2;
+  background-color: #2C3333;
+  text-decoration: none;
+  shape-margin: inherit;
+  border-style: solid;
+  border-color: #2C3333;
+}
+
 
 .show_checkmark {
   visibility: visible;
