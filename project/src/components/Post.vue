@@ -1,13 +1,21 @@
 <template>
-  <div class="post">
-    <slot />
+  <div class="post" @click="goToPost()">
+    <p id="time">{{data.time}}</p>
+    <p>{{data.text}}</p>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Post',
+  props: ['data'],
+  methods: {
+    goToPost() {
+      let postData = this.data
+      this.$store.commit('setCurrentPost', {postData});
+      this.$router.push('/post');
+    },
+  }
 }
 </script>
 
@@ -22,7 +30,6 @@ export default {
   background-color: #395B64;
   border-radius: 20px;
 }
-.img{float: left;}
 .like{
   float: left;
   cursor: pointer;
@@ -31,22 +38,17 @@ export default {
   width: 45px;
   height: 45px;
 }
-.picture {
-  margin-top: 10px;
-  width: 100%;
-  object-fit: contain;
-  background-color: #395B64;
+#time {
+  margin: 0;
+  text-align: right;
 }
 p{
   display: block;
-  margin-top: 80px;
+  font-size: 100%;
   text-align: left;
 }
-p1{
-  display: block;
-  font-size: 120%;
-  margin-left: 60px;
+#like {
+  margi-left: 60px;
   margin-top: 35px;
-  text-align: left;
 }
 </style>

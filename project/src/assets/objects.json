@@ -1,29 +1,22 @@
 [
   {
-    "img":"https://www.cuimc.columbia.edu/sites/default/files/styles/cola_media_1280_16_9/public/media/images/2021-12/gettyimages-1301790734_darkstreetinsnow_sad.jpg?itok=JefQLaVS",
-    "username":"John",
+    "id": 0,
     "time":"November 12",
-    "text":"going home at 3pm",
-    "counter": 0
+    "text":"going home at 3pm"
   },
   {
-    "img":"https://www.tchc.org/blog/wp-content/uploads/2017/12/SAD-Snowman.jpg",
-    "username":"Maria",
+    "id": 1,
     "time":"December 2",
-    "text":"AHAHHHHAHHAHAHHA",
-    "counter": 0
+    "text":"AHAHHHHAHHAHAHHA"
   },
   {
-    "img":"https://www.barendspsychology.com/wp-content/uploads/2014/10/Winterdepression.jpg",
-    "username":"Paula",
+    "id": 2,
     "time":"December 25",
-    "text":"................",
-    "counter": 0
+    "text":"................"
   },
   {
-    "username":"Nolan",
+    "id": 3,
     "time":"October 3",
-    "text":"(((((((",
-    "counter": 0
+    "text":"((((((("
   }
 ]

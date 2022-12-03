@@ -1,21 +1,11 @@
 <template>
   <div class="container">
-    <div class="sidebar" style="left: 10px"></div>
+    <div class="sidebar" style="left: 10px"/>
     <div class="main" id="posts">
-      <Post v-for="data in $store.state.json">
-        <img class="img" src='../assets/pfp.png' alt="pfp" width="60" height="60">{{data.time}}
-        <div v-if="data.hasOwnProperty('img')">
-          <img class="picture" :src=data.img alt="picture" width="400" height="400">
-        </div>
-        <div v-else />
-        <p>{{data.username}}: {{data.text}}</p>
-        <img class="like" v-on:click="data.counter += 1" src='../assets/like.svg' alt="like" width="40" height="40">
-        <p1>{{data.counter}}</p1><br>
-      </Post>
+      <Post v-for="data in $store.state.json" :data="data"/>
     </div>
-    <div class="sidebar" style="right: 10px"></div>
+    <div class="sidebar" style="right: 10px"/>
   </div>
-  <button v-on:click="$store.commit('resetLikes')">Reset Likes</button>
 </template>
 
 <script>
@@ -34,10 +24,7 @@ body{
   background-color: black;
 }
 .container{
-  width: 100%;
   display: flex;
-  align-items: stretch;
-  justify-content: space-around;
 }
 .main {
   display: inline-block;
@@ -60,6 +47,7 @@ button{
   padding: 10px;
   border-radius: 20px;
   cursor: pointer;
+  margin: 5px;
 }
 button:hover {
   color: #E7F6F2;
@@ -68,6 +56,7 @@ button:hover {
   shape-margin: inherit;
   border-style: solid;
   border-color: #2C3333;
+  margin: 5px;
 }
 @media (max-width: 1000px) {
   header {
