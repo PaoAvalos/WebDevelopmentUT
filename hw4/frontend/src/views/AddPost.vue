@@ -23,8 +23,12 @@ export default {
   },
   methods: {
     addPost() {
+      let date = new Date().toJSON().slice(0, 10);
+      let time = new Date().toJSON().slice(12, 16);
+      time = date+" "+time;
       var data = {
         body: this.post.body,
+        time: time,
       };
       fetch("http://localhost:3000/api/posts", {
         method: "POST",
@@ -34,7 +38,6 @@ export default {
         body: JSON.stringify(data),
       })
           .then((response) => {
-            console.log(response.data);
             this.$router.push("/api/home");
           })
           .catch((e) => {

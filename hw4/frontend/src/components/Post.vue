@@ -1,6 +1,6 @@
 <template>
   <div class="post" @click="goToPost()">
-<!--    <p id="time">{{data.time}}</p>-->
+    <p id="time">{{data.time}}</p>
     <p>{{data.body}}</p>
   </div>
 </template>
@@ -20,6 +20,7 @@ export default {
 
 <style>
 .post{
+  word-wrap: break-word;
   font-family: monospace;
   font-size: 200%;
   text-align: right;

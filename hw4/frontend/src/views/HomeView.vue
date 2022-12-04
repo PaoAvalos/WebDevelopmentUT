@@ -1,4 +1,5 @@
 <template>
+  <button @click="goToLogin()">Logout</button>
   <div class="container">
     <div class="sidebar" style="left: 10px"/>
     <div class="main" id="posts">
@@ -6,6 +7,7 @@
     </div>
     <div class="sidebar" style="right: 10px"/>
   </div>
+  <button @click="deleteAll()">Delete All</button>
   <button @click="addPost()">Add Post</button>
 </template>
 
@@ -23,8 +25,24 @@ export default {
     };
   },
   methods: {
+    goToLogin(){
+      this.$router.push("/login");
+    },
     addPost() {
       this.$router.push("/api/addpost");
+    },
+    deleteAll(){
+      fetch(`http://localhost:3000/api/posts`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      })
+          .then((response) => {
+            this.fetchPosts();
+            // this.$router.push("/api/home");
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
     fetchPosts() {
       fetch(`http://localhost:3000/api/posts/`)
@@ -68,7 +86,7 @@ button{
   padding: 10px;
   border-radius: 20px;
   cursor: pointer;
-  margin: 5px;
+  margin: 30px 5px 0px 5px;
 }
 button:hover {
   color: #E7F6F2;
@@ -77,7 +95,7 @@ button:hover {
   shape-margin: inherit;
   border-style: solid;
   border-color: #2C3333;
-  margin: 5px;
+  margin: 30px 5px 0px 5px;
 }
 @media (max-width: 1000px) {
   header {

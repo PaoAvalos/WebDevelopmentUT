@@ -1,13 +1,16 @@
 const express = require('express');
 const pool = require('./database');
 const cors = require('cors')
+const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const port = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(cors());
-
+app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.post('/api/posts', async(req, res) => {
     try {
@@ -15,7 +18,7 @@ app.post('/api/posts', async(req, res) => {
         const post = req.body;
         console.log(post);
         const newpost = await pool.query(
-            "INSERT INTO posttable(body) values ($1)    RETURNING*", [post.body]
+            "INSERT INTO posttable(body, time) values ($1, $2)    RETURNING*", [post.body, post.time]
         );
         res.json(newpost);
     } catch (err) {
@@ -80,6 +83,17 @@ app.delete('/api/posts/:id', async(req, res) => {
     }
 });
 
+app.delete('/api/posts', async(req, res) => {
+    try {
+        console.log("delete all posts request has arrived");
+        const deletepost = await pool.query(
+            "DELETE FROM posttable"
+        );
+        res.json(deletepost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 app.listen(port, () => {
     console.log("Server is listening to port " + port)

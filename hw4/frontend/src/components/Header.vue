@@ -44,8 +44,9 @@ export default {
     color: black;
     background-color: #A5C9CA;
     text-decoration: none;
-    shape-margin: inherit;
     border-style: solid;
     border-color: black;
+    border-radius: 20px;
+    padding: 7px;
   }
 </style>

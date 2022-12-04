@@ -22,7 +22,8 @@ const execute = async(query) => {
 const createTblQuery = `
     CREATE TABLE IF NOT EXISTS "posttable" (
 	    "id" SERIAL PRIMARY KEY,         
-	    "body" VARCHAR(200) NOT NULL
+	    "body" VARCHAR(200) NOT NULL,
+	    "time" VARCHAR(200)
     );`;
 
 execute(createTblQuery).then(result => {
