@@ -1,5 +1,6 @@
 <template>
   <div class="post" @click="goToPost()">
+    <img class="img" src='../assets/pfp.png' alt="pfp" width="60" height="60">
     <p id="time">{{data.time}}</p>
     <p>{{data.body}}</p>
   </div>
@@ -29,6 +30,11 @@ export default {
   margin-top: 10px;
   background-color: #395B64;
   border-radius: 20px;
+}
+.img {
+  display: inline-block;
+  float: left;
+  border-radius: 50px;
 }
 .like{
   float: left;

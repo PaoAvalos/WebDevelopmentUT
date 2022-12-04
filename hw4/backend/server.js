@@ -16,7 +16,6 @@ app.post('/api/posts', async(req, res) => {
     try {
         console.log("a post request has arrived");
         const post = req.body;
-        console.log(post);
         const newpost = await pool.query(
             "INSERT INTO posttable(body, time) values ($1, $2)    RETURNING*", [post.body, post.time]
         );
