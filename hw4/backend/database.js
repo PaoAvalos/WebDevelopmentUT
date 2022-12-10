@@ -28,7 +28,7 @@ const createTblQuery = `
 
 execute(createTblQuery).then(result => {
     if (result) {
-        console.log('If does not exists, create the "posttable" table');
+        console.log('If does not exists, create the "posttable or users" table');
     }
 });
 

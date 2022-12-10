@@ -8,6 +8,7 @@
     <div class="sidebar" style="right: 10px"/>
   </div>
   <button @click="deleteAll()">Delete All</button>
+  <!--here i need to check if person is logged in, so gotta pull the data from database -->
   <button @click="addPost()">Add Post</button>
 </template>
 
