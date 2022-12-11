@@ -24,7 +24,12 @@ const createTblQuery = `
 	    "id" SERIAL PRIMARY KEY,         
 	    "body" VARCHAR(200) NOT NULL,
 	    "time" VARCHAR(200)
-    );`;
+        );
+    CREATE TABLE IF NOT EXISTS "users" (
+        "email" VARCHAR(50) NOT NULL,         
+        "password" VARCHAR(16) NOT NULL
+    );`
+    ;
 
 execute(createTblQuery).then(result => {
     if (result) {
