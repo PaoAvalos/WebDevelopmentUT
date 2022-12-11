@@ -2,7 +2,8 @@
   <header>
     <nav>
       <router-link to="/">Home</router-link> |
-      <router-link to="/login">LogIn</router-link>
+      <router-link to="/login">LogIn</router-link> |
+      <router-link to="/contact">ContactUs</router-link>
     </nav>
     <router-view/>
   </header>

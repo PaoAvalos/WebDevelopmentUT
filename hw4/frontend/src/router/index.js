@@ -4,11 +4,15 @@ import SignUpView from '../views/SignUpView.vue'
 import LogInView from "@/views/LogInView.vue";
 import PostView from "@/views/PostView.vue";
 import AddPost from "@/views/AddPost.vue";
+import ContactUs from "@/views/ContactUs.vue"
 
 const routes = [
   {
     path: '/',
     name: 'home',
+    meta: {
+      needsAuth: true
+    },
     component: () =>
         import ("../views/HomeView.vue")
   },
@@ -41,6 +45,11 @@ const routes = [
     path: "/:catchAll(.*)",
     name: 'home',
     component: HomeView,
+  },
+  {
+    path: '/contact',
+    name: 'contactus',
+    component: ContactUs
   }
 ]
 
@@ -49,4 +58,4 @@ const router = createRouter({
   routes
 })
 
-export default router
+export default router;
