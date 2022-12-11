@@ -1,0 +1,22 @@
+### signup a user if not registered before
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "usr1",
+  "password": "usr1"
+}
+
+### login a user first step
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "usr1",
+  "password": "usr1"
+}
+
+###  Authinticate a user, this will not work for you unless you replace the token with one created for your user
+GET http://localhost:3000/auth/authenticate
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzA2NzEyODcsImV4cCI6MTY3MDY3NDg4N30.krbyy6zSIEj_sAdJAItxOaMw7nMSqEfkLzybLP9WLys
+

@@ -31,5 +31,17 @@ execute(createTblQuery).then(result => {
         console.log('If does not exists, create the "posttable or users" table');
     }
 });
+const createTblQueryUsr = `
+    CREATE TABLE IF NOT EXISTS "users" (
+        "id" SERIAL PRIMARY KEY,         
+        "email" VARCHAR(200) NOT NULL UNIQUE,
+        "password" VARCHAR(200) NOT NULL
+    );`;
+
+execute(createTblQueryUsr).then(result => {
+    if (result) {
+        console.log('Table "users" is created');
+    }
+});
 
 module.exports = pool;
