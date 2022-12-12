@@ -1,6 +1,5 @@
 <template>
     <div>
-    <Header />
     <p>Contact us at: support@snowpage.mt</p>
     </div>
 </template>

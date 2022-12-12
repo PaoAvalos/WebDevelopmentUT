@@ -70,13 +70,6 @@ const routes = [
   {
     path: "/:catchAll(.*)",
     name: 'home',
-    // beforeEnter: async(to, from, next) => {
-    //   let authResult = await auth.authenticated();
-    //   if (!authResult) {
-    //       next('/login')
-    //   } else {
-    //       next();
-    //   }},
     component: HomeView,
   },
   {

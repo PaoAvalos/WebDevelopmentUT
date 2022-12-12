@@ -39,7 +39,6 @@ export default {
         body: JSON.stringify(this.post),
       })
           .then((response) => {
-            console.log(response.data);
             this.$router.push("/api/home");
           })
           .catch((e) => {
@@ -52,7 +51,6 @@ export default {
         headers: { "Content-Type": "application/json" },
       })
           .then((response) => {
-            console.log(response.data);
             this.$router.push("/api/home");
           })
           .catch((e) => {

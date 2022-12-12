@@ -13,16 +13,10 @@ app.use(express.json());
 app.use(cookieParser());
 //JWT TOKEN CREATION
 const secret = "97dd4cc2b6ef051a0dc62a2f2c200277673c5d81762bea6448faa507ab1eacfe14d624bb0db431a8bc951bdee76672c91d777b83b44430445c442ba965acc656";
-// Obtained with require('crypto').randomBytes(64).toString('hex')
 const refresh_secret = "5125505625158c249f98679fd6e9b64e25ef858b3de39da28d9bedec3cea5550bbe78f216ef4db18023bcecb5b3f1d71703ca73871b88e784cc274cd415e82b4";
-const maxAge = 60 * 60; //unlike cookies, the expiresIn in jwt token is calculated by seconds not milliseconds
 const generateJWT = (id) => {
     return jwt.sign({ id }, secret )
-    //{ expiresIn: maxAge } later i will add this, when i am refreshing it
-
-    //jwt.sign(payload, secret, [options, callback]), and it returns the JWT as string
 }
-
 
 app.post('/api/posts', async(req, res) => {
     try {
@@ -37,7 +31,6 @@ app.post('/api/posts', async(req, res) => {
     }
 });
 
-
 app.get('/api/posts', async(req, res) => {
     try {
         console.log("get posts request has arrived");  
@@ -45,12 +38,10 @@ app.get('/api/posts', async(req, res) => {
             "SELECT * FROM posttable"
         );
         res.json(posts.rows);
-
     } catch (err) {
         console.error(err.message);
     }
 });
-
 
 app.get('/api/posts/:id', async(req, res) => {
     try {
@@ -79,8 +70,6 @@ app.put('/api/posts/:id', async(req, res) => {
         console.error(err.message);
     }
 });
-
-
 
 app.delete('/api/posts/:id', async(req, res) => {
     try {
@@ -111,32 +100,26 @@ app.listen(port, () => {
     console.log("Server is listening to port " + port)
 });
 
-//AUTHENTICATION 
-// is used to check whether a user is AUTH.
-
-// is used to check whether a user is authinticated
+//AUTHENTICATION
 app.get('/api/authenticate', async(req, res) => {
     console.log('authentication request has been arrived');
     const token = req.cookies.jwt; // assign the token named jwt to the token const
-    console.log("token " + token);
-    let authenticated = false; // a user is not authenticated until proven the opposite
+    let authenticated = false;
     try {
-        if (token) { //checks if the token exists
-            //jwt.verify(token, secretOrPublicKey, [options, callback]) verify a token
-            await jwt.verify(token, secret, (err) => { //token exists, now we try to verify it
-                if (err) { // not verified, redirect to login page
+        if (token) {
+            await jwt.verify(token, secret, (err) => {
+                if (err) {
                     console.log(err.message);
-                    console.log('token is not verified');
-                    res.send({ "authenticated": authenticated }); // authenticated = false
-                } else { // token exists and it is verified 
+                    res.send({ "authenticated": authenticated });
+                } else {
                     console.log('author is authenticated');
                     authenticated = true;
-                    res.send({ "authenticated": authenticated }); // authenticated = true
+                    res.send({ "authenticated": authenticated });
                 }
             })
-        } else { //applies when the token does not exist
+        } else {
             console.log('no token');
-            res.send({ "authenticated": authenticated }); // authenticated = false
+            res.send({ "authenticated": authenticated });
         }
     } catch (err) {
         console.error(err.message);
@@ -148,19 +131,16 @@ app.get('/api/authenticate', async(req, res) => {
 app.post('/api/signup', async(req, res) => {
     try {
         console.log("a signup request has arrived");
-        //console.log(req.body);
         const { email, password } = req.body;
 
         const salt = await bcrypt.genSalt(); //  generates the salt, i.e., a random string
         const bcryptPassword = await bcrypt.hash(password, salt) // hash the password and the salt 
-        const authUser = await pool.query( // insert the user and the hashed password into the database
+        const authUser = await pool.query(
             "INSERT INTO users(email, password) values ($1, $2) RETURNING*", [email, bcryptPassword]
         );
         console.log(authUser.rows[0].id);
-        const token = await generateJWT(authUser.rows[0].id); // generates a JWT by taking the user id as an input (payload)
+        const token = await generateJWT(authUser.rows[0].id);
         console.log(token);
-        //res.cookie("isAuthorized", true, { maxAge: 1000 * 60, httpOnly: true });
-        //res.cookie('jwt', token, { maxAge: 6000000, httpOnly: true });
         res
             .status(201)
             .cookie('jwt', token, { maxAge: 6000000, httpOnly: true })
@@ -178,23 +158,9 @@ app.post('/api/login', async(req, res) => {
         const { email, password } = req.body;
         const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
         if (user.rows.length === 0) return res.status(401).json({ error: "User is not registered" });
-
-        /* 
-        To authenticate users, you will need to compare the password they provide with the one in the database. 
-        bcrypt.compare() accepts the plain text password and the hash that you stored, along with a callback function. 
-        That callback supplies an object containing any errors that occurred, and the overall result from the comparison. 
-        If the password matches the hash, the result is true.
-        bcrypt.compare method takes the first argument as a plain text and the second argument as a hash password. 
-        If both are equal then it returns true else returns false.
-        */
-
-        //Checking if the password is correct
         const validPassword = await bcrypt.compare(password, user.rows[0].password);
-        //console.log("validPassword:" + validPassword);
         if (!validPassword) return res.status(401).json({ error: "Incorrect password" });
-
         const token = await generateJWT(user.rows[0].id);
-        console.log(token);
         res
             .status(201)
             .cookie("jwt", token, { maxAge: 6000000, httpOnly: true })

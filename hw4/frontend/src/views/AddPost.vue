@@ -37,13 +37,13 @@ export default {
         },
         body: JSON.stringify(data),
       })
-          .then((response) => {
-            this.$router.push("/api/home");
-          })
-          .catch((e) => {
-            console.log(e);
-            console.log("error");
-          });
+      .then((response) => {
+        this.$router.push("/api/home");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
     },
   },
 }

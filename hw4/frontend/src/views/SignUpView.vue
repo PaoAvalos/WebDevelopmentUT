@@ -4,7 +4,7 @@
       <input type="password" @input="checkPassword" @click='show_req = !show_req' v-model="password"
              placeholder="Password"/>
 
-     <div class="warn" v-show="warn">Invalid password! </div>
+     <div class="warn" v-show="warn">Invalid password or email!</div>
       <div id="hide" >
 
         <ul>
@@ -38,23 +38,11 @@ export default {
       show_req: false,
       warn:false,
       email:null
-
-
     }
   },
 
 
   methods: {
-    goToHome() {
-      if (this.valid_password === true) {
-        this.warn=false ;
-        this.$router.push('/');
-      }
-      else {
-        this.warn=true ;
-      }
-    },
-
     checkPassword() {
       this.password_length = this.password.length;
       const format = /[_]/;
@@ -66,8 +54,7 @@ export default {
       }
 
       this.contains_number = /\d/.test(this.password);
-      
-      console.log(this.password[0]);
+
        if (this.password[0] === this.password[0].toUpperCase()) {
          this.contains_uppercase = true;
        } else {
@@ -79,12 +66,7 @@ export default {
      } else {
        this.contains_num_lower = false;
      }
-
-
-
-
       this.contains_underscore = format.test(this.password);
-
       if (
           this.contains_amount_characters === true &&
           this.contains_underscore === true &&
@@ -102,27 +84,30 @@ export default {
         email: this.email,
         password: this.password,
       };
-      fetch( "http://localhost:3000/api/signup", {
-        method: "POST",
-        headers: {"Content-Type": "application/json",},
-        credentials: 'include',
-        body: JSON.stringify(profile),
-
-        // here I need to, give away login info, and receive a response from backend, if info correct then set bool
-        // to true, if not then go to log in.
-      })
-
-          //make response be positive
-          .then((response) => {
+      if (this.valid_password === true) {
+        this.warn=false ;
+        fetch( "http://localhost:3000/api/signup", {
+          method: "POST",
+          headers: {"Content-Type": "application/json",},
+          credentials: 'include',
+          body: JSON.stringify(profile),
+        })
+        .then((response) => {
+          if (response.ok === false){
+            this.warn=true;
+          }
+          else {
             this.$router.push("/");
-            console.log(" registered user");
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      }
+      else {
+        this.warn=true ;
+      }
 
-          })
-          .catch((e) => {
-            console.log(e);
-            console.log("not registered,error happened");
-
-          });
     },
   },
 };

@@ -8,7 +8,6 @@
     <div class="sidebar" style="right: 10px"/>
   </div>
   <button @click="deleteAll()">Delete All</button>
-  <!--here i need to check if person is logged in, so gotta pull the data from database -->
   <button @click="addPost()">Add Post</button>
 </template>
 
@@ -34,19 +33,12 @@ export default {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        console.log('jwt removed');
-        //console.log('jwt removed:' + auth.authenticated());
         this.$router.push("/login");
-        //location.assign("/");
       })
       .catch((e) => {
         console.log(e);
         console.log("error logout");
       });
-    },
-    goToLogin(){
-      this.$router.push("/login");
     },
     addPost() {
       this.$router.push("/api/addpost");
@@ -60,12 +52,12 @@ export default {
           method: "DELETE",
           headers: {"Content-Type": "application/json"},
         })
-            .then((response) => {
-              this.fetchPosts()
-            })
-            .catch((e) => {
-              console.log(e);
-            });
+        .then((response) => {
+          this.fetchPosts()
+        })
+        .catch((e) => {
+          console.log(e);
+        });
       }
     },
     fetchPosts() {
@@ -77,7 +69,6 @@ export default {
   },
   mounted() {
     this.fetchPosts();
-    console.log("mounted");
   },
 
   }
