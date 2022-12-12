@@ -29,14 +29,7 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    beforeEnter: async(to, from, next) => {
-      let authResult = await auth.authenticated();
-      if (!authResult) {
-          next('/login')
-      } else {
-          alert('You are already logged in!')
-          next(from);
-      }},
+    
     component: LogInView
   },
   {
