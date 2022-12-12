@@ -114,10 +114,12 @@ app.listen(port, () => {
 //AUTHENTICATION 
 // is used to check whether a user is AUTH.
 
-app.get('/auth/authenticate', async(req, res) => {
-    console.log('authentication request has arrived');
+// is used to check whether a user is authinticated
+app.get('/api/authenticate', async(req, res) => {
+    res.json("authenticate")
+    console.log('authentication request has been arrived');
     const token = req.cookies.jwt; // assign the token named jwt to the token const
-    console.log("token " + token);
+    //console.log("token " + token);
     let authenticated = false; // a user is not authenticated until proven the opposite
     try {
         if (token) { //checks if the token exists
@@ -127,8 +129,8 @@ app.get('/auth/authenticate', async(req, res) => {
                     console.log(err.message);
                     console.log('token is not verified');
                     res.send({ "authenticated": authenticated }); // authenticated = false
-                } else { // token exists and it is verified 
-                    console.log('author is authenticated');
+                } else { // token exists and it is verified
+                    console.log('author is authinticated');
                     authenticated = true;
                     res.send({ "authenticated": authenticated }); // authenticated = true
                 }
@@ -144,8 +146,9 @@ app.get('/auth/authenticate', async(req, res) => {
 });
 
 // signup a user
-app.post('/auth/signup', async(req, res) => {
+app.post('/api/signup', async(req, res) => {
     try {
+        //res.json("you have tried to signup")
         console.log("a signup request has arrived");
         //console.log(req.body);
         const { email, password } = req.body;
@@ -155,7 +158,9 @@ app.post('/auth/signup', async(req, res) => {
         const authUser = await pool.query( // insert the user and the hashed password into the database
             "INSERT INTO users(email, password) values ($1, $2) RETURNING*", [email, bcryptPassword]
         );
+        console.log("hhh");
         console.log(authUser.rows[0].id);
+        console.log("lll");
         const token = await generateJWT(authUser.rows[0].id); // generates a JWT by taking the user id as an input (payload)
         //console.log(token);
         //res.cookie("isAuthorized", true, { maxAge: 1000 * 60, httpOnly: true });
@@ -166,18 +171,19 @@ app.post('/auth/signup', async(req, res) => {
             .json({ user_id: authUser.rows[0].id })
             .send;
     } catch (err) {
+        console.log("eee");
         console.error(err.message);
         res.status(400).send(err.message);
     }
 });
 
-app.post('/auth/login', async(req, res) => {
+app.post('/api/login', async(req, res) => {
     try {
         console.log("a login request has arrived");
         const { email, password } = req.body;
         const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
         if (user.rows.length === 0) return res.status(401).json({ error: "User is not registered" });
-
+        console.log("salksdfl");
         /* 
         To authenticate users, you will need to compare the password they provide with the one in the database. 
         bcrypt.compare() accepts the plain text password and the hash that you stored, along with a callback function. 
@@ -192,7 +198,7 @@ app.post('/auth/login', async(req, res) => {
         const validPassword = await bcrypt.compare(password, user.rows[0].password);
         //console.log("validPassword:" + validPassword);
         if (!validPassword) return res.status(401).json({ error: "Incorrect password" });
-
+        console.log("validPassword:" + validPassword);
         const token = await generateJWT(user.rows[0].id);
         res
             .status(201)
@@ -200,12 +206,13 @@ app.post('/auth/login', async(req, res) => {
             .json({ user_id: user.rows[0].id })
             .send;
     } catch (error) {
+        console.log("kdsmlksldk")
         res.status(401).json({ error: error.message });
     }
 });
 
 //logout a user = deletes the jwt
-app.get('/auth/logout', (req, res) => {
+app.get('/api/logout', (req, res) => {
     console.log('delete jwt request arrived');
     res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" }).send
 });

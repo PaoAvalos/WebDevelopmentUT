@@ -1,6 +1,6 @@
 <template xmlns:v-bind="">
   <div class="main">
-      <input type="email" placeholder="Email" required/><br>
+      <input type="email" placeholder="Email" required v-model="email"/><br>
       <input type="password" @input="checkPassword" @click='show_req = !show_req' v-model="password"
              placeholder="Password"/>
 
@@ -18,7 +18,7 @@
 
       </div>
 
-      <button @click="goToHome()">Signup</button>
+      <button @click="LogInfo()">Signup</button>
   </div>
 
 </template>
@@ -36,7 +36,8 @@ export default {
       contains_underscore: false,
       valid_password: false,
       show_req: false,
-      warn:false
+      warn:false,
+      email:null
 
 
     }
@@ -66,7 +67,7 @@ export default {
 
       this.contains_number = /\d/.test(this.password);
       
-
+      console.log(this.password[0]);
        if (this.password[0] === this.password[0].toUpperCase()) {
          this.contains_uppercase = true;
        } else {
@@ -94,6 +95,33 @@ export default {
       } else {
         this.valid_password = false;
       }
+    },
+
+    LogInfo(){
+      var profile = {
+        email: this.email,
+        password: this.password,
+      };
+      fetch( "http://localhost:3000/api/signup", {
+        method: "POST",
+        headers: {"Content-Type": "application/json",},
+        body: JSON.stringify(profile),
+
+        // here I need to, give away login info, and receive a response from backend, if info correct then set bool
+        // to true, if not then go to log in.
+      })
+
+          //make response be positive
+          .then((response) => {
+            this.$router.push("/");
+            console.log(" registered user");
+
+          })
+          .catch((e) => {
+            console.log(e);
+            console.log("not registered,error happened");
+
+          });
     },
   },
 };

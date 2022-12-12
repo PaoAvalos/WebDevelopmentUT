@@ -1,7 +1,9 @@
 <template xmlns:v-bind="">
+
+  <!--for login view we assume that user is created, if it is not in data base re direct to sign up-->
   <div class="main">
-    <input type="email" placeholder="Email" required/><br>
-    <input type="password" @input="checkPassword" @click='show_req = !show_req' v-model="password"
+    <input type="email" placeholder="Email" required  v-model="email"/><br>
+    <input type="password" @input="checkPassword" @click='show_req = !show_req' required v-model="password"
            placeholder="Password"/>
 
     <div class="warn" v-show="warn">Invalid password! </div>
@@ -18,7 +20,7 @@
 
     </div>
 
-    <button @click="goToHome()">Login</button>
+    <button @click="LogInfo()" >Login</button>
     <p id="or">Or</p>
     <button @click="goToSignUp()">Signup</button>
   </div>
@@ -27,8 +29,11 @@
 
 <script>
 export default {
-  data() {
+    data() {
     return {
+
+
+
       password: null,
       contains_amount_characters: false,
       contains_num_lower:false,
@@ -37,8 +42,8 @@ export default {
       contains_underscore: false,
       valid_password: false,
       show_req: false,
-      warn:false
-
+      warn:false,
+      email: null
 
     }
   },
@@ -98,6 +103,33 @@ export default {
       } else {
         this.valid_password = false;
       }
+    },
+    LogInfo(){
+      var profile = {
+        email: this.email,
+        password: this.password,
+      };
+      fetch( "http://localhost:3000/api/login", {
+      method: "POST",
+        headers: {"Content-Type": "application/json",},
+      body: JSON.stringify(profile),
+
+        // here I need to, give away login info, and receive a response from backend, if info correct then set bool
+        // to true, if not then go to log in.
+      })
+
+          //make response be positive
+          .then((response) => {
+            console.log(response)
+            //CHEXK STATUS OS RESP
+            this.$router.push("/");
+          })
+          .catch((e) => {
+            console.log(e);
+            console.log("not registered");
+            this.$router.push('/signup');
+
+          });
     },
   },
 };
