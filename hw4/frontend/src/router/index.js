@@ -18,7 +18,8 @@ const routes = [
       } else {
           next();
       }},
-    component: HomeView},
+    component: HomeView
+  },
   {
     path: '/signup',
     name: 'signup',
@@ -69,13 +70,13 @@ const routes = [
   {
     path: "/:catchAll(.*)",
     name: 'home',
-    beforeEnter: async(to, from, next) => {
-      let authResult = await auth.authenticated();
-      if (!authResult) {
-          next('/login')
-      } else {
-          next();
-      }},
+    // beforeEnter: async(to, from, next) => {
+    //   let authResult = await auth.authenticated();
+    //   if (!authResult) {
+    //       next('/login')
+    //   } else {
+    //       next();
+    //   }},
     component: HomeView,
   },
   {

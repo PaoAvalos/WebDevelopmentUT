@@ -14,6 +14,7 @@
 
 <script>
 import Post from '@/components/Post.vue'
+import auth from "@/auth";
 
 export default {
   name: 'home',
@@ -50,18 +51,22 @@ export default {
     addPost() {
       this.$router.push("/api/addpost");
     },
-    deleteAll(){
-      fetch(`http://localhost:3000/api/posts`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      })
-          .then((response) => {
-            this.fetchPosts();
-            // this.$router.push("/api/home");
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+    async deleteAll(){
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+        this.$router.push("/login");
+      } else {
+        fetch(`http://localhost:3000/api/posts`, {
+          method: "DELETE",
+          headers: {"Content-Type": "application/json"},
+        })
+            .then((response) => {
+              this.fetchPosts()
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+      }
     },
     fetchPosts() {
       fetch(`http://localhost:3000/api/posts/`)
