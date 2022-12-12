@@ -35,9 +35,6 @@ const routes = [
   {
     path: '/api/home',
     name: 'home',
-    meta: {
-      requiresAuth: true
-    },
     component: HomeView
   },
   {

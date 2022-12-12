@@ -1,5 +1,5 @@
 <template>
-  <button @click="goToLogin()">Logout</button>
+  <button @click="logout()">Logout</button>
   <div class="container">
     <div class="sidebar" style="left: 10px"/>
     <div class="main" id="posts">
@@ -26,6 +26,24 @@ export default {
     };
   },
   methods: {
+    logout() {
+    console.log("logging out")
+      fetch("http://localhost:3000/api/logout", {
+          credentials: 'include', //  Don't forget to specify this if you need cookies
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        console.log('jwt removed');
+        //console.log('jwt removed:' + auth.authenticated());
+        this.$router.push("/login");
+        //location.assign("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error logout");
+      });
+    },
     goToLogin(){
       this.$router.push("/login");
     },
@@ -56,7 +74,8 @@ export default {
     this.fetchPosts();
     console.log("mounted");
   },
-}
+
+  }
 </script>
 
 <style>
