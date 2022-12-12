@@ -43,6 +43,13 @@ const routes = [
   {
     path: '/api/post/:id',
     name: 'post',
+    beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+          next('/login')
+      } else {
+          next();
+      }},
     component: PostView
   },
   {
