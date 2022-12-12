@@ -105,6 +105,7 @@ export default {
       fetch( "http://localhost:3000/api/signup", {
         method: "POST",
         headers: {"Content-Type": "application/json",},
+        credentials: 'include',
         body: JSON.stringify(profile),
 
         // here I need to, give away login info, and receive a response from backend, if info correct then set bool

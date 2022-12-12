@@ -5,14 +5,19 @@ import LogInView from "@/views/LogInView.vue";
 import PostView from "@/views/PostView.vue";
 import AddPost from "@/views/AddPost.vue";
 import ContactUs from "@/views/ContactUs.vue"
+import auth from "../auth";
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    meta: {
-      needsAuth: true
-    },
+    beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+          next('/login')
+      } else {
+          next();
+      }},
     component: () =>
         import ("../views/HomeView.vue")
   },
@@ -24,11 +29,22 @@ const routes = [
   {
     path: '/login',
     name: 'login',
+    beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+          next('/login')
+      } else {
+          alert('You are already logged in!')
+          next(from);
+      }},
     component: LogInView
   },
   {
     path: '/api/home',
     name: 'home',
+    meta: {
+      requiresAuth: true
+    },
     component: HomeView
   },
   {
@@ -39,7 +55,14 @@ const routes = [
   {
     path: '/api/addpost',
     name: 'addpost',
-    component: AddPost
+    component: AddPost,
+    beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+          next('/login')
+      } else {
+          next();
+      }},
   },
   {
     path: "/:catchAll(.*)",
@@ -50,9 +73,9 @@ const routes = [
     path: '/contact',
     name: 'contactus',
     component: ContactUs
-  }
-]
+  },
 
+]
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes

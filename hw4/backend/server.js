@@ -16,7 +16,6 @@ const secret = "97dd4cc2b6ef051a0dc62a2f2c200277673c5d81762bea6448faa507ab1eacfe
 // Obtained with require('crypto').randomBytes(64).toString('hex')
 const refresh_secret = "5125505625158c249f98679fd6e9b64e25ef858b3de39da28d9bedec3cea5550bbe78f216ef4db18023bcecb5b3f1d71703ca73871b88e784cc274cd415e82b4";
 const maxAge = 60 * 60; //unlike cookies, the expiresIn in jwt token is calculated by seconds not milliseconds
-
 const generateJWT = (id) => {
     return jwt.sign({ id }, secret )
     //{ expiresIn: maxAge } later i will add this, when i am refreshing it
@@ -41,11 +40,12 @@ app.post('/api/posts', async(req, res) => {
 
 app.get('/api/posts', async(req, res) => {
     try {
-        console.log("get posts request has arrived");
+        console.log("get posts request has arrived");  
         const posts = await pool.query(
             "SELECT * FROM posttable"
         );
         res.json(posts.rows);
+
     } catch (err) {
         console.error(err.message);
     }
@@ -116,10 +116,9 @@ app.listen(port, () => {
 
 // is used to check whether a user is authinticated
 app.get('/api/authenticate', async(req, res) => {
-    res.json("authenticate")
     console.log('authentication request has been arrived');
     const token = req.cookies.jwt; // assign the token named jwt to the token const
-    //console.log("token " + token);
+    console.log("token " + token);
     let authenticated = false; // a user is not authenticated until proven the opposite
     try {
         if (token) { //checks if the token exists
@@ -129,14 +128,14 @@ app.get('/api/authenticate', async(req, res) => {
                     console.log(err.message);
                     console.log('token is not verified');
                     res.send({ "authenticated": authenticated }); // authenticated = false
-                } else { // token exists and it is verified
-                    console.log('author is authinticated');
+                } else { // token exists and it is verified 
+                    console.log('author is authenticated');
                     authenticated = true;
                     res.send({ "authenticated": authenticated }); // authenticated = true
                 }
             })
         } else { //applies when the token does not exist
-            console.log('author is not authinticated');
+            console.log('no token');
             res.send({ "authenticated": authenticated }); // authenticated = false
         }
     } catch (err) {
@@ -148,7 +147,6 @@ app.get('/api/authenticate', async(req, res) => {
 // signup a user
 app.post('/api/signup', async(req, res) => {
     try {
-        //res.json("you have tried to signup")
         console.log("a signup request has arrived");
         //console.log(req.body);
         const { email, password } = req.body;
@@ -158,11 +156,9 @@ app.post('/api/signup', async(req, res) => {
         const authUser = await pool.query( // insert the user and the hashed password into the database
             "INSERT INTO users(email, password) values ($1, $2) RETURNING*", [email, bcryptPassword]
         );
-        console.log("hhh");
         console.log(authUser.rows[0].id);
-        console.log("lll");
         const token = await generateJWT(authUser.rows[0].id); // generates a JWT by taking the user id as an input (payload)
-        //console.log(token);
+        console.log(token);
         //res.cookie("isAuthorized", true, { maxAge: 1000 * 60, httpOnly: true });
         //res.cookie('jwt', token, { maxAge: 6000000, httpOnly: true });
         res
@@ -171,7 +167,6 @@ app.post('/api/signup', async(req, res) => {
             .json({ user_id: authUser.rows[0].id })
             .send;
     } catch (err) {
-        console.log("eee");
         console.error(err.message);
         res.status(400).send(err.message);
     }
@@ -183,13 +178,12 @@ app.post('/api/login', async(req, res) => {
         const { email, password } = req.body;
         const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
         if (user.rows.length === 0) return res.status(401).json({ error: "User is not registered" });
-        console.log("salksdfl");
+
         /* 
         To authenticate users, you will need to compare the password they provide with the one in the database. 
         bcrypt.compare() accepts the plain text password and the hash that you stored, along with a callback function. 
         That callback supplies an object containing any errors that occurred, and the overall result from the comparison. 
         If the password matches the hash, the result is true.
-
         bcrypt.compare method takes the first argument as a plain text and the second argument as a hash password. 
         If both are equal then it returns true else returns false.
         */
@@ -198,15 +192,15 @@ app.post('/api/login', async(req, res) => {
         const validPassword = await bcrypt.compare(password, user.rows[0].password);
         //console.log("validPassword:" + validPassword);
         if (!validPassword) return res.status(401).json({ error: "Incorrect password" });
-        console.log("validPassword:" + validPassword);
+
         const token = await generateJWT(user.rows[0].id);
+        console.log(token);
         res
             .status(201)
-            .cookie('jwt', token, { maxAge: 6000000, httpOnly: true })
+            .cookie("jwt", token, { maxAge: 6000000, httpOnly: true })
             .json({ user_id: user.rows[0].id })
             .send;
     } catch (error) {
-        console.log("kdsmlksldk")
         res.status(401).json({ error: error.message });
     }
 });

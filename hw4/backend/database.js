@@ -26,26 +26,15 @@ const createTblQuery = `
 	    "time" VARCHAR(200)
         );
     CREATE TABLE IF NOT EXISTS "users" (
-        "email" VARCHAR(50) NOT NULL,         
-        "password" VARCHAR(16) NOT NULL
-    );`
+        "id" SERIAL PRIMARY KEY,         
+        "email" VARCHAR(200) NOT NULL UNIQUE,
+        "password" VARCHAR(200) NOT NULL
+        );`
     ;
 
 execute(createTblQuery).then(result => {
     if (result) {
-        console.log('If does not exists, create the "posttable or users" table');
-    }
-});
-const createTblQueryUsr = `
-    CREATE TABLE IF NOT EXISTS "users" (
-        "id" SERIAL PRIMARY KEY,         
-        "email" VARCHAR(200) NOT NULL UNIQUE,
-        "password" VARCHAR(200) NOT NULL
-    );`;
-
-execute(createTblQueryUsr).then(result => {
-    if (result) {
-        console.log('Table "users" is created');
+        console.log('If does not exists, create the "posttable and users" table');
     }
 });
 
