@@ -18,9 +18,7 @@ const routes = [
       } else {
           next();
       }},
-    component: () =>
-        import ("../views/HomeView.vue")
-  },
+    component: HomeView},
   {
     path: '/signup',
     name: 'signup',
@@ -35,6 +33,13 @@ const routes = [
   {
     path: '/api/home',
     name: 'home',
+    beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+          next('/login')
+      } else {
+          next();
+      }},
     component: HomeView
   },
   {
@@ -64,6 +69,13 @@ const routes = [
   {
     path: "/:catchAll(.*)",
     name: 'home',
+    beforeEnter: async(to, from, next) => {
+      let authResult = await auth.authenticated();
+      if (!authResult) {
+          next('/login')
+      } else {
+          next();
+      }},
     component: HomeView,
   },
   {
