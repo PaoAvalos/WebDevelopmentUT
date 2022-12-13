@@ -1,4 +1,4 @@
-# project
+# Homework 4 frontend
 
 ## Project setup
 ```

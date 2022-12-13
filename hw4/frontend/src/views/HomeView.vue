@@ -1,5 +1,6 @@
 <template>
   <button @click="logout()">Logout</button>
+  <button @click="logout()">Login</button>
   <div class="container">
     <div class="sidebar" style="left: 10px"/>
     <div class="main" id="posts">

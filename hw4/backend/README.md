@@ -1,18 +1,11 @@
-# WAD2022-Lab12-Backend
+# Homework 4 backend
 
 ## Pre-requisites
-Node.js \& NPM
+Node.js, NPM, PostgreSQL database hw4wad with password postgres
 
-## Do not forget to add the password: "" of your database in database.js
-
-## Clone the repository
+## Navigate to backend
 ```
-git clone https://github.com/M-Gharib/WAD2022-Lab12-Backend.git
-```
-
-## Navigate to the project directory
-```
-cd <project name>
+cd backend
 ```
 
 ## Install dependencies
