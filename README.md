@@ -1,5 +1,5 @@
 # WebDevelopmentUT
-Repository for Web Development course UT 
+Repository for Web Development course UT. A working forum where users can post pictures, text,log in with authentication and interact with other users.
 
 # Homework 1 and 2
 Folder hw1 contains the HTML pages for homework 1 and 2. 
